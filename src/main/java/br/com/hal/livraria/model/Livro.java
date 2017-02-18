@@ -70,4 +70,8 @@ public class Livro {
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
+
+	public void adicionaAutor(Autor autor) {
+		getAutores().add(autor);
+	}
 }
