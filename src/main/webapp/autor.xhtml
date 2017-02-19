@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body>
-	<h1>Novo Autor</h1>
-	<h:form>
-		<fieldset>
-			<legend>Dados do Autor</legend>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Nome:" for="nome" />
-				<h:inputText id="nome" value="#{autorBean.autor.nome}" />
-				<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
-			</h:panelGrid>
-		</fieldset>
-	</h:form>
-</h:body>
-
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">Novo Autor</ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<fieldset>
+				<legend>Dados do Autor</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome" value="#{autorBean.autor.nome}" />
+					<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+	</ui:define>
+	<ui:define name="rodape">
+  		Cadastro de Autores
+	</ui:define>
+</ui:composition>
 </html>
