@@ -25,6 +25,10 @@ public class LivroBean {
 		return livro;
 	}
 
+	public void setLivro(Livro livro) {
+		this.livro = livro;
+	}
+	
 	public Integer getAutorId() {
 		return autorId;
 	}
@@ -44,18 +48,32 @@ public class LivroBean {
 		if (getLivro().getAutores().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("Livro deve ter pelo menos um Autor."));
 			return;
-		} else {
-			new DAO<Livro>(Livro.class).adiciona(this.getLivro());
-			livro = new Livro();	
 		}
+		
+		if (getLivro().getId() == null) {
+			new DAO<Livro>(Livro.class).adiciona(this.getLivro());
+		} else {
+			new DAO<Livro>(Livro.class).atualiza(this.getLivro());
+		}
+		
+		livro = new Livro();
 	}
-
+	
+	public void remover(Livro livro) {
+		System.out.println("Removendo o Livro " + livro.getTitulo());
+		new DAO<Livro>(Livro.class).remove(livro);
+	}
+	
 	public void gravarAutor() {
 		Autor autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
 		getLivro().adicionaAutor(autor);
 		System.out.println("Associando Autor " + autor.getNome());
 	}
 	
+	public void removerAutor(Autor autor) {
+		getLivro().removerAutor(autor);
+	}
+
 	public List<Autor> getAutoresDoLivro() {
 		return getLivro().getAutores();
 	}

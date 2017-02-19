@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -27,7 +28,7 @@ public class Livro {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataLancamento = Calendar.getInstance();
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<>();
 	
 	public Integer getId() {
@@ -80,5 +81,9 @@ public class Livro {
 
 	public void adicionaAutor(Autor autor) {
 		getAutores().add(autor);
+	}
+	
+	public void removerAutor(Autor autor) {
+		getAutores().remove(autor);
 	}
 }
