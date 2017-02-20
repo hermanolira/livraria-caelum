@@ -14,8 +14,18 @@ public class AutorBean {
 
 	private Autor autor = new Autor();
 
+	private Integer autorId;
+	
 	public Autor getAutor() {
 		return autor;
+	}
+
+	public Integer getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
 	}
 
 	public List<Autor> getAutores() {
@@ -41,5 +51,11 @@ public class AutorBean {
 	
 	public void carregar(Autor autor) {
 		this.autor = autor;
+	}
+	
+	public void carregarAutorPorId() {
+		if (autorId != null) {
+			this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+		}
 	}
 }
