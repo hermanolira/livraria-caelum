@@ -19,14 +19,20 @@ public class LivroBean {
 
 	private Livro livro = new Livro();
 
+	private Integer livroId;
+	
 	private Integer autorId;
 	
 	public Livro getLivro() {
 		return livro;
 	}
-
-	public void setLivro(Livro livro) {
-		this.livro = livro;
+	
+	public Integer getLivroId() {
+		return livroId;
+	}
+	
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
 	}
 	
 	public Integer getAutorId() {
@@ -80,6 +86,10 @@ public class LivroBean {
 	
 	public List<Livro> getLivros() {
 		return new DAO<Livro>(Livro.class).listaTodos();
+	}
+	
+	public void carregaLivroPorId() {
+		livro = new DAO<>(Livro.class).buscaPorId(livroId);
 	}
 	
 	public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {

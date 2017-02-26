@@ -54,8 +54,8 @@ public class AutorBean {
 	}
 	
 	public void carregarAutorPorId() {
-		if (autorId != null) {
+		//if (autorId != null) {
 			this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
-		}
+		//}
 	}
 }

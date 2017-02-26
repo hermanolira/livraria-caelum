@@ -7,7 +7,7 @@
 
 	<f:metadata>
 		<f:viewParam name="autorId" value="#{autorBean.autorId}" />
-		<f:viewAction action="#{autorBean.carregarAutorPorId}"/>
+		<f:viewAction if="#{param.autorId != null}"  action="#{autorBean.carregarAutorPorId}"/>
 	</f:metadata>
 
 	<ui:define name="titulo">Novo Autor</ui:define>
@@ -15,11 +15,26 @@
 		<h:form>
 			<fieldset>
 				<legend>Dados do Autor</legend>
-				<h:panelGrid columns="2">
+				
+				<h:panelGrid columns="3">
 					<h:outputLabel value="Nome:" for="nome" />
-					<h:inputText id="nome" value="#{autorBean.autor.nome}" />
-					<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+					<h:inputText id="nome" value="#{autorBean.autor.nome}" required="true">
+						<f:validateLength minimum="5" />
+						<f:ajax event="blur" render="messageNome" />
+					</h:inputText>
+					<h:message id="messageNome" for="nome"/>
+					
+					<h:outputLabel value="E-mail:" for="email"  />
+					<h:inputText id="email" value="#{autorBean.autor.email}" required="true">
+						<f:passThroughAttribute name="type" value="email" />
+					</h:inputText>
+					<h:message id="messageEmail" for="email" />
+					
+					<h:commandButton value="Gravar" action="#{autorBean.gravar}">
+						<!-- <f:ajax execute="@form" render="@form :tabelaAutores" /> -->
+					</h:commandButton>
 				</h:panelGrid>
+				
 			</fieldset>
 		</h:form>
 

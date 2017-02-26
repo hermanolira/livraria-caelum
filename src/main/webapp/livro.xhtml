@@ -4,7 +4,12 @@
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
-		
+
+	<f:metadata>
+		<f:viewParam name="livroId" value="#{livroBean.livroId}"/>
+		<f:viewAction if="#{param['livroId'] != null}" action="#{livroBean.carregaLivroPorId()}"/>
+	</f:metadata>
+
 	<ui:define name="titulo">Novo Livro</ui:define>
 	<ui:define name="conteudo">
 		<h:form id="form">
