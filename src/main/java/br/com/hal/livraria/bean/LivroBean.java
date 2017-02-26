@@ -27,6 +27,10 @@ public class LivroBean {
 		return livro;
 	}
 	
+	public void setLivro(Livro livro) {
+		this.livro = livro;
+	}
+	
 	public Integer getLivroId() {
 		return livroId;
 	}
