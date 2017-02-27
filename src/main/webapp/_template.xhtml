@@ -10,7 +10,11 @@
 	<div id="cabecalho">
 		<h:panelGrid columns="1">
 			<h:graphicImage library="img" name="logo.png" />
-			<h:outputText value="#{sessionScope['usuarioLogado'].email}" />
+			<!-- <h:outputText value="#{sessionScope['usuarioLogado'].email}" /> -->
+			<h:outputText value="#{usuarioLogado.email}" />
+			<h:form rendered="#{usuarioLogado != null}">
+				<h:commandLink value="Logout" action="#{loginBean.deslogar}" />
+			</h:form>
 		</h:panelGrid>
 		<h1><ui:insert name="titulo"/></h1>
 	</div>
