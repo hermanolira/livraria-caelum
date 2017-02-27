@@ -5,6 +5,7 @@
 
 	<lifecycle>
 		<phase-listener>br.com.hal.livraria.util.LogPhaseListener</phase-listener>
+		<phase-listener>br.com.hal.livraria.security.Autorizador</phase-listener>
 	</lifecycle>
 
 </faces-config>
